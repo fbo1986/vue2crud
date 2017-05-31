@@ -2,12 +2,15 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title> VUE II | JS</title>
+	<title> VUE JS 2 | CRUD</title>
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 	<style type="text/css" media="screen">
 		.delete_task{
 			margin-left: 50px;
+		}
+		.mtop20{
+			margin-top: 20px;
 		}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
@@ -15,25 +18,44 @@
 </head>
 <body>
 
-	<div class="container">
-		<section id="root">
-			<h3>{{ well }}</h3>
+	<div class="container ">
+		<section  id="root" class="mtop20">
+
+			<div class="titulo" v-html="well">
+				
+			</div>
+
+			<br>
+			<p v-text="reversedName"></p>
 		
-		
+			
+			<footer class="footer">
+				<!-- prop para hacer estatica una varible -->
+				<p v-once v-text="project"></p>
+
+			</footer>
 		</section>
-		
-		<footer class="footer">
-			<p>2017 VUE JS 2 </p>
-		</footer>
 	</div>
 
 	<script src="https://unpkg.com/vue@2.3.3" type="text/javascript"></script>
 	<script>
+		// v-text para evitar que al recargar la pagina se muestren las llaves
+		// computed se utiliza para propiedades dinamicas
+		// v-html para imprimir prpiedad vue y respete etiquetas html
 		
 		var vm = new Vue({
 			el : '#root',
 			data: {
-				well: 'Vue 2 Crud | Js '
+				well: '<h1>Vue 2 Crud | Js</h1>',
+				name : 'Fabian C.M',
+				team : false,
+				project : 'CRUD vue2 © 2017'
+
+			},
+			computed: {
+				reversedName(){
+					return this.name.split('').reverse().join('')
+				}
 			}
 		})
 	</script>
